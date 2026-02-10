@@ -3,6 +3,7 @@ My central "Monorepo" for all daily technical practice and experiments.
 
 ## 📂 Project Structure
 * **/terraform**: Infrastructure as Code (Azure/GCP).
+* **/python-basics**: Python basics and notes.
 * **/linux-practice**: Bash scripting and CLI notes.
 
 ## 📓 Log
