@@ -1,0 +1,34 @@
+name: "Terraform CI"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform-checks:
+    name: "Lint & Validate"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.7.0"
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+        #this checks if your code is "clean" and pretty.
+        
+      - name: Terraform Init
+        run: terraform init -backend=false
+        # We use -backend=false becauyse we are just testing syntax.
+        
+      - name: Terraform Validate
+        run: terraform validate
+        # This is the "Big Boss" check-it finds the logic errors.
+
